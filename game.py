@@ -1,4 +1,5 @@
 '''
+    DOCSTRING section
 Adventure Game
 Author: Stephen Yount
 Version: 1.0
