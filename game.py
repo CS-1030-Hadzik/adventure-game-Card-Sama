@@ -39,7 +39,9 @@ decision = input("Do you wish to take the path? (yes or no): ").lower()
 if decision == "yes":
     print(f"Brave choice{player_name}! You step onto the path and venture forward!")
 
+#No decision section, goal is to have this section print and cylce back to option or force close game, which eveer one fits better.
+
 elif decision == "no":
     print(player_name+ ", you decide to wait. Perhaps courage will find you later.") # Concatenation example")
-print("Confused, you stand still, unsure of what to do.")
-
+else: 
+    # print("Confused, you stand still, unsure of what to do.")    Not working as desired right now. Want it to show up after "no" 
