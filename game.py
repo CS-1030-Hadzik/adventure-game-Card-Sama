@@ -33,13 +33,13 @@ unknown...
 print(starting_area)
 
 #Ask the player for their first decision
-decision = input("Do you wish to take the path? (yes or no): ".lower)()
+decision = input("Do you wish to take the path? (yes or no): ").lower()
 
 #Respond to player based on choice
 if decision == "yes":
     print(f"Brave choice{player_name}! You step onto the path and venture forward!")
 
-if decision == "no":
+elif decision == "no":
     print(player_name+ ", you decide to wait. Perhaps courage will find you later.") # Concatenation example")
-else:
-    print("Confused, you stand still, unsure of what to do.")
+print("Confused, you stand still, unsure of what to do.")
+
