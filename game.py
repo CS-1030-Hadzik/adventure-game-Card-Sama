@@ -24,8 +24,8 @@ print("Wlecome " + player_name + ", Your journey begins now!")
 
 #Describe the starting area
 starting_area ="""
-You find yourself in a dark foest.
-The sound of rustling leaves fulls the air.
+You find yourself in a dark forest.
+The sound of rustling leaves fills the air.
 A faint path lies ahead, leading deeper into the
 unknown...
 """
@@ -43,5 +43,9 @@ if decision == "yes":
 
 elif decision == "no":
     print(player_name+ ", you decide to wait. Perhaps courage will find you later.") # Concatenation example")
+    print("Hours pass and the sun sets. You lay down under a tree and wake up the next day faced with a decision...")
+
+
+#Not valid answer section
 else: 
-    # print("Confused, you stand still, unsure of what to do.")    Not working as desired right now. Want it to show up after "no"
+    print("Confused, you stand still, unsure of what to do.")
