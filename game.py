@@ -43,15 +43,16 @@ while decision not in ["yes", "no"]:
     decision = input("Do you wish to take the path? (yes or no): ").lower()
 
 
-#Respond to player based on choice, if invalid choice, loop back to decision
+#YES decision section
 if decision == "yes":
     print(f"Brave choice{player_name}! You step onto the path and venture forward!")
 
 
-#No decision section, goal is to have this section print and cylce back to option or force close game, which eveer one fits better.
+#No decision section. Add loop back to choice
 elif decision == "no":
     print(player_name+ ", you decide to wait. Perhaps courage will find you later.") # Concatenation example")
     print("Hours pass and the sun sets. You lay down under a tree and wake up the next day faced with a decision...")
+
 
 
 
