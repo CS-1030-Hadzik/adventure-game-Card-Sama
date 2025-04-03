@@ -63,7 +63,7 @@ while True:
     print("\t1. Take the left path into the dark woods.")
     print("\t2. Take the right path toward the mountain pass.")
     print("\t3. Stay where you are.")
-    print("\t4. Go to the entrance of a cave between the paths.")
+#    print("\t4. Go to the entrance of a cave between the paths.")
     print("\tType 'i' to view your inventory.")
 
 
@@ -77,14 +77,14 @@ while True:
         print(f"{player.name}, you step into the dark woods."
               "The trees whisper as walk deeper.")
         add_to_inventory("Lantern")
-        player.has_lantern(True)
+        player.has_lantern = True
 
     elif decision == "2":
         print(f"{player.name}, you make your way "
               "towards the mountain pass, feeling "
               "the cold wind against your face.")
         add_to_inventory("Map")
-        player.has_map(True)
+        player.has_map = True
 
     elif decision == "3":
         print("You stay still, listening to the "
@@ -93,10 +93,10 @@ while True:
     elif decision == "4":
         print("You walk up to the entracne of the cave."
         "It appears to be dark inside.")
-        if player.has_lantern == False:
-            print("You can not see far enough to salfly travel inside.")
-        if player.has_lantern:
-            print("You use your lantern to light the way.")
+        # if player.has_lantern == False:
+        #     print("You can not see far enough to salfly travel inside.")
+        # if player.has_lantern:
+        #     print("You use your lantern to light the way.")
 
     else:
         print("Invalid choice. Please choose "
@@ -106,7 +106,7 @@ while True:
     play_again = input("Do you want to continue "
                        "exploring? (yes or no): ").lower()
     if play_again != "yes":
-        print(f"Thanks for playing, {Player.name} "
+        print(f"Thanks for playing, {player.name} "
               "See you next time.")
         break # Exit the loop and end the game
 
