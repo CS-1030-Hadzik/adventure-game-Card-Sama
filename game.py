@@ -65,29 +65,46 @@ def describe_area():
 while True:
     print("\nYou see mutiple places ahead:")
 
-    print("\t1. Take the left path into the dark woods.")
+    print("\t1. You go towards the Dark Woods.")
 
-    print("\t2. Take the right path toward the mountain pass.")
+    print("\t2. Take the left path into the dark woods.")
 
-    print("\t3. Go to the entrance of a near by.")
+    print("\t3. Take the right path toward the mountain pass.")
 
-    print("\t4. Search for hidden valley")
+    print("\t4. Go to the entrance of a near by.")
 
-    print("\t5. Stay where you are.")
+    print("\t5. Search for hidden valley")
+
+    print("\t6. Stay where you are.")
 
     print("\tType 'i' to view your inventory.")
 
-
-    decision = input("What will you do (1,2,3, 4, 5 or I): ").lower()
+    decision = input("What will you do (1,2,3, 4, 5, 6 or I): ").lower()
 
 
     if decision == "i":
         print("Inventory" , inventory)
         continue
 
+# daek woods choice
+    if decision == "1":
+        print(f"{player.name}, you step into the dark woods."
+              "The trees whisper as you approach.")
+        add_to_inventory("Lantern")
+        player.has_lantern = True
+#def explore_dark_woods():
+    print(f"{player.name}, you step into the dark woods...")
+
+    if 'lantern' not in player.inventory:
+        add_to_inventory(player,"lantern")
+        player.has_lantern == True
+
+    else:
+        print("You've already found the lantern here.")
+
 
 #Forest Choice
-    if decision == "1":
+    if decision == "2":
         print(f"{player.name}, you step into the dark woods."
               "The trees whisper as walk deeper.")
         add_to_inventory("Lantern")
@@ -95,7 +112,7 @@ while True:
 
 
 #Mountain choice 
-    elif decision == "2":
+    elif decision == "3":
         print(f"{player.name}, you make your way "
               "towards the mountain pass, feeling "
               "the cold wind against your face.")
@@ -104,7 +121,7 @@ while True:
 
 
 #Cave choice
-    elif decision == "3":
+    elif decision == "4":
         print("You walk up to the entracne of the cave."
         "It appears to be dark inside.")
 
@@ -122,7 +139,7 @@ while True:
 
 
     # Hidden Valley Choice
-    elif decision == "4":
+    elif decision == "5":
         print("You search for a place called hidden valley.")
 
         if player.has_map == True:
@@ -142,14 +159,14 @@ while True:
 
 
 #Stay where you are
-    elif decision == "5":
+    elif decision == "6":
         print("You stay still, listening to the "
               "distant sounds of the forest")
 
 
     else:
         print("Invalid choice. Please choose "
-              "1, 2, 3, 4, 5 or I.")
+              "1, 2, 3, 4, 5, 6 or I.")
 
     # Ask if they want to continue
     play_again = input("Do you want to continue "
@@ -157,5 +174,5 @@ while True:
     if play_again != "yes":
         print(f"Thanks for playing, {player.name} "
               "See you next time.")
-        break # Exit the loop and end the game
+        break  # Exit the loop and end the game
 
