@@ -2,7 +2,7 @@
     DOCSTRING Section
 Adventure Game
 Author: Stephen Yount
-Version: 0.4
+Version: 0.5
 Description:
 This is a text-based adventure game where the player makes choices
 to navigate through a mysterious forest.
@@ -22,6 +22,71 @@ def add_to_inventory(item):
     # Add an item to the player's inventory
     inventory.append(item)
 
+#------------
+# Areas
+#------------
+#--------------------------
+#          Dark Woods-----------------------
+#--------------------------
+def explore_dark_woods(player):
+        print(f"{player.name}, you step into the dark woods."
+              "The trees whisper as walk deeper.")
+        add_to_inventory("Lantern")
+        player.has_lantern = True
+#--------------------------
+#          Mountain Pass--------------------
+#--------------------------
+def explore_mountain_pass(player):
+        print(f"{player.name}, you make your way "
+              "towards the mountain pass, feeling "
+              "the cold wind against your face.")
+        add_to_inventory("Map")
+        player.has_map = True
+#--------------------------
+#          Cave-----------------------------
+#--------------------------
+def explore_cave(player):
+        print("You walk up to the entracne of the cave."
+        "It appears to be dark inside.")
+
+
+        # if player.has_lantern:
+        if player.has_lantern == True:
+            print(f"{player.name} you bravely enter the cave")
+            print("Inside the cave, you find a treasure chest!")
+            add_to_inventory("Treasure")
+
+
+        if player.has_lantern == False:
+            print("You can't see far enough to travel safely.")
+            print("You need a light source to explore further.")
+#--------------------------
+#          Hidden Valley--------------------
+#--------------------------
+def explore_hidden_valley(player):
+        print("You search for a place called hidden valley.")
+
+        if player.has_map == True:
+            print("You find a hidden valley, "
+                  "a place of beauty and tranquility.")
+            print("You can rest here and regain your strength.")
+            player.health = 100
+            print("Your health is now full.")
+            print("You find a treasure chest!")
+            add_to_inventory("Rare Herbs")
+            print("You have found rare herbs.")
+
+        if player.has_map == False:
+            print("You can't seem to find Hidden Valley.")
+            print("You may need guidance of some kind.")         
+#--------------------------
+#          
+#--------------------------
+#          
+#--------------------------
+#          
+#--------------------------
+#          
 #--------------------------
 # Function: Welcome_player
 # Greets the player, asks for their name,
@@ -65,108 +130,57 @@ def describe_area():
 while True:
     print("\nYou see mutiple places ahead:")
 
-    print("\t1. You go towards the Dark Woods.")
+    print("\t1. Take the left path into the dark woods.")
 
-    print("\t2. Take the left path into the dark woods.")
+    print("\t2. Take the right path toward the mountain pass.")
 
-    print("\t3. Take the right path toward the mountain pass.")
+    print("\t3. Go to the entrance of a near by.")
 
-    print("\t4. Go to the entrance of a near by.")
+    print("\t4. Search for hidden valley")
 
-    print("\t5. Search for hidden valley")
-
-    print("\t6. Stay where you are.")
+    print("\t5. Stay where you are.")
 
     print("\tType 'i' to view your inventory.")
 
-    decision = input("What will you do (1,2,3, 4, 5, 6 or I): ").lower()
+    decision = input("What will you do (1,2,3, 4, 5, or I): ").lower()
 
 
     if decision == "i":
         print("Inventory" , inventory)
         continue
 
-# daek woods choice
-    if decision == "1":
-        print(f"{player.name}, you step into the dark woods."
-              "The trees whisper as you approach.")
-        add_to_inventory("Lantern")
-        player.has_lantern = True
-#def explore_dark_woods():
-    print(f"{player.name}, you step into the dark woods...")
-
-    if 'lantern' not in player.inventory:
-        add_to_inventory(player,"lantern")
-        player.has_lantern == True
-
-    else:
-        print("You've already found the lantern here.")
+# dark woods choice
 
 
 #Forest Choice
-    if decision == "2":
-        print(f"{player.name}, you step into the dark woods."
-              "The trees whisper as walk deeper.")
-        add_to_inventory("Lantern")
-        player.has_lantern = True
+    if decision == "1":
+        explore_dark_woods(player)
 
 
 #Mountain choice 
-    elif decision == "3":
-        print(f"{player.name}, you make your way "
-              "towards the mountain pass, feeling "
-              "the cold wind against your face.")
-        add_to_inventory("Map")
-        player.has_map = True
+    elif decision == "2":
+        explore_mountain_pass(player)
 
 
 #Cave choice
-    elif decision == "4":
-        print("You walk up to the entracne of the cave."
-        "It appears to be dark inside.")
-
-
-        # if player.has_lantern:
-        if player.has_lantern == True:
-            print(f"{player.name} you bravely enter the cave")
-            print("Inside the cave, you find a treasure chest!")
-            add_to_inventory("Treasure")
-
-
-        if player.has_lantern == False:
-            print("You can't see far enough to travel safely.")
-            print("You need a light source to explore further.")
+    elif decision == "3":
+        explore_cave(player)
 
 
     # Hidden Valley Choice
-    elif decision == "5":
-        print("You search for a place called hidden valley.")
-
-        if player.has_map == True:
-            print("You find a hidden valley, "
-                  "a place of beauty and tranquility.")
-            print("You can rest here and regain your strength.")
-            player.health = 100
-            print("Your health is now full.")
-            print("You find a treasure chest!")
-            add_to_inventory("Rare Herbs")
-            print("You have found rare herbs.")
-
-        if player.has_map == False:
-            print("You can't seem to find Hidden Valley.")
-            print("You may need guidance of some kind.")
-
+    elif decision == "4":
+        explore_hidden_valley(player)
 
 
 #Stay where you are
-    elif decision == "6":
+    elif decision == "5":
         print("You stay still, listening to the "
               "distant sounds of the forest")
 
 
     else:
         print("Invalid choice. Please choose "
-              "1, 2, 3, 4, 5, 6 or I.")
+              "1, 2, 3, 4, 5, or I.")
 
     # Ask if they want to continue
     play_again = input("Do you want to continue "
