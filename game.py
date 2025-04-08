@@ -2,7 +2,7 @@
     DOCSTRING Section
 Adventure Game
 Author: Stephen Yount
-Version: 1.0
+Version: 0.3
 Description:
 This is a text-based adventure game where the player makes choices
 to navigate through a mysterious forest.
@@ -62,8 +62,9 @@ while True:
     print("\nYou see mutiple places ahead:")
     print("\t1. Take the left path into the dark woods.")
     print("\t2. Take the right path toward the mountain pass.")
-    print("\t3. Stay where you are.")
-#    print("\t4. Go to the entrance of a cave between the paths.")
+    print("\t3. Go to the entrance of a near by.")
+    print("\t4. Stay where you are.")
+
     print("\tType 'i' to view your inventory.")
 
 
@@ -73,12 +74,14 @@ while True:
         print("Inventory" , inventory)
         continue
 
+#Forest Choice
     if decision == "1":
         print(f"{player.name}, you step into the dark woods."
               "The trees whisper as walk deeper.")
         add_to_inventory("Lantern")
         player.has_lantern = True
 
+#Mountain choice
     elif decision == "2":
         print(f"{player.name}, you make your way "
               "towards the mountain pass, feeling "
@@ -86,21 +89,31 @@ while True:
         add_to_inventory("Map")
         player.has_map = True
 
+#Cave choice
     elif decision == "3":
-        print("You stay still, listening to the "
-              "distant sounds of the forest")
-        
-    elif decision == "4":
         print("You walk up to the entracne of the cave."
         "It appears to be dark inside.")
-        # if player.has_lantern == False:
-        #     print("You can not see far enough to salfly travel inside.")
+
         # if player.has_lantern:
-        #     print("You use your lantern to light the way.")
+        if player.has_lantern:
+            print(f"{player.name} you bravely enter the cave")
+            print("Inside the cave, you find a treasure chest!")
+
+   # if player.has_lantern == False:
+        else:
+            print("You can't see far enough to travel safely.")
+            print("You need a light source to explore further.")
+
+
+#Stay where you are
+    elif decision == "4":
+        print("You stay still, listening to the "
+              "distant sounds of the forest")
+
 
     else:
         print("Invalid choice. Please choose "
-              "1, 2, or 3.")
+              "1, 2, 3, or 4.")
 
     # Ask if they want to continue
     play_again = input("Do you want to continue "
