@@ -69,9 +69,9 @@ while True:
 
     print("\t2. Take the right path toward the mountain pass.")
 
-    print("\t3. Search for hidden valley")
+    print("\t3. Go to the entrance of a near by.")
 
-    print("\t4. Go to the entrance of a near by.")
+    print("\t4. Search for hidden valley")
 
     print("\t5. Stay where you are.")
 
@@ -116,9 +116,9 @@ while True:
             add_to_inventory("Treasure")
 
 
-    if player.has_lantern == False:
-        print("You can't see far enough to travel safely.")
-        print("You need a light source to explore further.")
+        if player.has_lantern == False:
+            print("You can't see far enough to travel safely.")
+            print("You need a light source to explore further.")
 
 
     # Hidden Valley Choice
@@ -133,6 +133,7 @@ while True:
             print("Your health is now full.")
             print("You find a treasure chest!")
             add_to_inventory("Rare Herbs")
+            print("You have found rare herbs.")
 
         if player.has_map == False:
             print("You can't seem to find Hidden Valley.")
