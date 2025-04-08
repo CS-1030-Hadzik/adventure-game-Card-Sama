@@ -32,15 +32,18 @@ def welcome_player():
     print("Welcome to the Adventure Game!")  
     print('Your journey begins here...')
 
+
     # Ask for the player's name
     name = input("What is your name, adventurer? ")
     player = Player(name)
+
 
     # Concatenate strings to create a personalized message
     print("Welcome " + player.name + ", Your journey begins now!")
     # Use an f-string to display the same message in a more readable way
     # print(f"Welcome {player.name}, Your journey begins now!")
     return player
+
 
 # Call the welcome_player function and store the player's name
 #Describe the starting area
@@ -57,6 +60,7 @@ def describe_area():
     """
     print(starting_area)
 
+
 # Start the game Loop
 while True:
     print("\nYou see mutiple places ahead:")
@@ -65,14 +69,17 @@ while True:
     print("\t3. Go to the entrance of a near by.")
     print("\t4. Stay where you are.")
 
+
     print("\tType 'i' to view your inventory.")
 
 
-    decision = input("What will you do (1,2,3 or I): ").lower()
+    decision = input("What will you do (1,2,3, 4 or I): ").lower()
+
 
     if decision == "i":
         print("Inventory" , inventory)
         continue
+
 
 #Forest Choice
     if decision == "1":
@@ -80,6 +87,7 @@ while True:
               "The trees whisper as walk deeper.")
         add_to_inventory("Lantern")
         player.has_lantern = True
+
 
 #Mountain choice
     elif decision == "2":
@@ -89,15 +97,18 @@ while True:
         add_to_inventory("Map")
         player.has_map = True
 
+
 #Cave choice
     elif decision == "3":
         print("You walk up to the entracne of the cave."
         "It appears to be dark inside.")
 
+
         # if player.has_lantern:
         if player.has_lantern:
             print(f"{player.name} you bravely enter the cave")
             print("Inside the cave, you find a treasure chest!")
+
 
    # if player.has_lantern == False:
         else:
