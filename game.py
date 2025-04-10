@@ -2,66 +2,79 @@
     DOCSTRING Section
 Adventure Game
 Author: Stephen Yount
-Version: 0.5
+Version: 1
 Description:
 This is a text-based adventure game where the player makes choices
 to navigate through a mysterious forest.
 '''
-#
+#------------------------------------------- player
 class Player:
     def __init__(self, name):
         self.name = name
         self.inventory = []
-        self.health = 100
+        self.health = 10
         self.has_map = False
         self.has_lantern = False
 
-#Player's inventory Section
-inventory = []
-def add_to_inventory(item):
+#Player's inventory Section ---------------- i
+def add_to_inventory(player, item):
     # Add an item to the player's inventory
-    inventory.append(item)
+    player.inventory.append(item)
+    print(f"You picked up {item}!")
+
+#--------------------------
+#Player Modifiers
+#--------------------------
+    #Stay still
+def stay_still(player):
+    print("You stay still, you feel as if you are being watched.")
+    print("It starts to get to you.")
+    player.health -= 10
+    print(f"{player.name}, your health is now {player.health}.")
 
 #------------
 # Areas
 #------------
 #--------------------------
-#          Dark Woods-----------------------
+#          Dark Woods----------------------- 1
 #--------------------------
 def explore_dark_woods(player):
         print(f"{player.name}, you step into the dark woods."
               "The trees whisper as walk deeper.")
-        add_to_inventory("Lantern")
+        add_to_inventory(player, "Lantern")
         player.has_lantern = True
 #--------------------------
-#          Mountain Pass--------------------
+#          Mountain Pass-------------------- 2
 #--------------------------
 def explore_mountain_pass(player):
         print(f"{player.name}, you make your way "
               "towards the mountain pass, feeling "
               "the cold wind against your face.")
-        add_to_inventory("Map")
+        add_to_inventory(player, "Map")
         player.has_map = True
 #--------------------------
-#          Cave-----------------------------
+#          Cave----------------------------- 3
 #--------------------------
 def explore_cave(player):
         print("You walk up to the entracne of the cave."
         "It appears to be dark inside.")
 
-
-        # if player.has_lantern:
+                #Yes lantern:
         if player.has_lantern == True:
             print(f"{player.name} you bravely enter the cave")
             print("Inside the cave, you find a treasure chest!")
-            add_to_inventory("Treasure")
+            add_to_inventory(player, "Treasure")
 
-
+                #No lantern
         if player.has_lantern == False:
             print("You can't see far enough to travel safely.")
             print("You need a light source to explore further.")
+            print("You feel a precence approaching.")
+            print("As fear consomes you, you run away.")
+            print("You trip from running away")
+            player.health -= 10
 #--------------------------
-#          Hidden Valley--------------------
+#          Hidden Valley-------------------- 4
 #--------------------------
 def explore_hidden_valley(player):
         print("You search for a place called hidden valley.")
@@ -73,24 +86,23 @@ def explore_hidden_valley(player):
             player.health = 100
             print("Your health is now full.")
             print("You find a treasure chest!")
-            add_to_inventory("Rare Herbs")
+            add_to_inventory(player, "Rare Herbs")
             print("You have found rare herbs.")
 
         if player.has_map == False:
             print("You can't seem to find Hidden Valley.")
-            print("You may need guidance of some kind.")         
+            print("You may need guidance of some kind.")       
+            player.health -= 10  
 #--------------------------
-#          
+#          Win/Lose Conditions-----------------------------------------------
 #--------------------------
-#          
+def check_win(player):
+    return "Treasure" in player.inventory and "Rare Herbs" in player.inventory
+
+def check_lose(player):
+    return player.health <= 0
 #--------------------------
-#          
-#--------------------------
-#          
-#--------------------------
-# Function: Welcome_player
-# Greets the player, asks for their name,
-# and returns the name as a string
+# Main Game --------------------------------------------------------------------
 #--------------------------
 def welcome_player():
     # Welcome message and introduction
@@ -142,11 +154,13 @@ while True:
 
     print("\tType 'i' to view your inventory.")
 
-    decision = input("What will you do (1,2,3, 4, 5, or I): ").lower()
+    print("\tCurrent Health: {player.health}")
+
+    decision = input("What will you do (1,2,3, 4, 5, I or F): ").lower()
 
 
     if decision == "i":
-        print("Inventory" , inventory)
+        print("Inventory" , player.inventory)
         continue
 
 # dark woods choice
@@ -176,11 +190,27 @@ while True:
     elif decision == "5":
         print("You stay still, listening to the "
               "distant sounds of the forest")
+        stay_still(player)
 
 
     else:
         print("Invalid choice. Please choose "
-              "1, 2, 3, 4, 5, or I.")
+              "1, 2, 3, 4, 5, I, or F.")
+
+#-------------------------- win 
+    if check_win(player):
+        print(f"\nCongratulations {player.name}! You have found both the treasure and the rare herbs.")
+        print("You are victorious and can now leave the forest.")
+        break
+
+#--------------------------- lose
+    if check_lose(player):
+        print(f"\n{player.name}, you have ran out of health. Your adventure ends here....")
+        break
+
+
+
+
 
     # Ask if they want to continue
     play_again = input("Do you want to continue "
